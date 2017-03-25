@@ -48,7 +48,7 @@ module.exports = {
 					//产出地址 
 					outputPath:"/assets/img/",
 					//域名地址
-					publicPath:release+"assets/img/",
+					publicPath:"src/assets/img/",
 					name:"[name].[ext]?[hash]"
 				}
 			}]
