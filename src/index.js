@@ -30,7 +30,6 @@ var router = new VueRouter({
 //router.beforeEach((to, from, next) =>{
 //	
 //})
-console.log(routes)
 const app = new Vue({
 	router,
 	store,

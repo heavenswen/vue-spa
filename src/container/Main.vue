@@ -1,8 +1,6 @@
 <template>
 	<div class="container">
-		<transition name="slide">
-			<router-view></router-view>
-		</transition>
+		<slot></slot>
 	</div>
 </template>
 
