@@ -6,7 +6,6 @@ import routes from './routes'
 import ElementUi from 'element-ui'
 import store from "./vuex"
 
-
 import App from "./pages/app.vue"
 
 //插件
@@ -24,19 +23,14 @@ var router = new VueRouter({
 				selector: to.hash
 			}
 		}
-	}
+	},
+	//mode: 'history',
 });
-//路由时连接判断
-router.beforeEach((to, from, next) =>{
-	if(to.matched.length){
-		//存在匹配时
-		next()
-	}else{
-		//不存在匹配时 go to 404
-		router.push("/404");
-	}
-	
-})
+//路由时
+//router.beforeEach((to, from, next) =>{
+//	
+//})
+console.log(routes)
 const app = new Vue({
 	router,
 	store,
@@ -47,19 +41,5 @@ const app = new Vue({
 			//console.log(this.$route.matched)
 		}
 	},
-	computed: {
-		//计算
-		ViewComponent() {
-			console.log(this.$route.matched)
-
-			return matchingView ?
-				require('./pages/' + matchingView + '.vue') :
-				require('./pages/404.vue')
-		}
-	},
 	render: h => h(App)
 }).$mount('#app')
-//	//简单路由
-//window.addEventListener('popstate', () => {
-//	app.$store.commit("setCurrentRoute", window.location.pathname);
-//})

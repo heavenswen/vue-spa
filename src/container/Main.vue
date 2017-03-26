@@ -1,26 +1,14 @@
 <template>
 	<div class="container">
-		<img :src="img" />
-		<ul class="side">
-			<li v-for='( item , index ) in nav' >
-				<v-link :href="index">{{ item }}</v-link>
-			</li>
-		</ul>
-		<slot></slot>
+		<transition name="slide">
+			<router-view></router-view>
+		</transition>
 	</div>
 </template>
 
 <script>
-	import VLink from '../components/VLink.vue'
-	import VForm from "../components/VForm.vue"
-	import img from "../assets/img/logo.png"
-	
 	export default {
-		data(){
-			let pages = this.$store.state.nav
-			return {nav:pages,img:img}
-		},
-		components: {VLink,VForm}
+
 		
 	}
 </script>

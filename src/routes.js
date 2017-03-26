@@ -5,15 +5,22 @@ import FalsePage from "./pages/404.vue"
 
 export default [
 	{
-		path: "/",
+		path: "/main",
 		name: "main",
-		component: Main
+		component: Main,
+		children:[
+			{
+				path:"child",
+				component:Login
+			}
+		]
 
 	},{
-		path:"/logn",
+		path:"/login",
 		component:Login
 	},{
-		path:"/404",
+		//404
+		path:"*",
 		component:FalsePage
 	}
 ]
