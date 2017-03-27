@@ -9,7 +9,11 @@ export default new Vuex.Store({
 	strict: debug,
 	state: {
 		//data 不允许直接修改
-		currentRoute: window.location.pathname
+		mobile:(document.hasOwnProperty("ontouchstart")),//判断
+		logo:"/src/assets/img/logo.png",//set logo
+		title:"DC",
+		user:"dc-qiu",
+		userPic:"/src/assets/img/group.png"
 	},
 	getters: {
 		//计算属性

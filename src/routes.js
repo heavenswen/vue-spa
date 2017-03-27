@@ -5,8 +5,11 @@ import FalsePage from "./pages/404.vue"
 
 export default [
 	{
+		//地址名
 		path: "/main",
 		name: "main",
+		//别名
+		alias:"/",
 		component: Main,
 		children:[
 			{
@@ -17,6 +20,7 @@ export default [
 
 	},{
 		path:"/login",
+		name:"login",
 		component:Login
 	},{
 		//404

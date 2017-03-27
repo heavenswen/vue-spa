@@ -5,6 +5,8 @@ import VueRouter from 'vue-router'
 import routes from './routes'
 import ElementUi from 'element-ui'
 import store from "./vuex"
+import 'element-ui/lib/theme-default/index.css'
+import './assets/css/style.scss'
 
 import App from "./pages/app.vue"
 
