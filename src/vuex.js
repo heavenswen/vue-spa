@@ -10,10 +10,26 @@ export default new Vuex.Store({
 	state: {
 		//data 不允许直接修改
 		mobile:(document.hasOwnProperty("ontouchstart")),//判断
-		logo:"/src/assets/img/logo.png",//set logo
-		title:"DC",
+		//用户名
 		user:"dc-qiu",
-		userPic:"/src/assets/img/group.png"
+		//
+		userPic:"/src/assets/img/group.png",
+		navs:[
+		{
+			title:"侧边导航",
+			icon:"el-icon-document",
+			childs:[
+			{
+				title:"导航1",
+				icon:"el-icon-document",
+				href:'/login'
+			}
+			]
+		},{
+			title:"选项卡",
+			href:'/login'
+		}
+		]
 	},
 	getters: {
 		//计算属性

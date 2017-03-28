@@ -1,24 +1,21 @@
 <template>
-	<div class="container">
-		<slot></slot>
-	</div>
+	<section>
+		<div class="container">
+
+			<transition>
+				<router-view>
+				</router-view>
+			</transition>
+		</div>
+	</section>
 </template>
 
 <script>
 	export default {
 
-		
 	}
 </script>
 
-<style lang = "sass">
-	$border:1px;
-	
-	.container {
-		max-width: 600px;
-		margin: 0 auto;
-		padding: 15px 30px;
-		background:url(../assets/img/girl2.jpg);
-		border:$border solid #ccc;
-	}
+<style lang="sass">
+
 </style>

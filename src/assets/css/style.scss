@@ -132,8 +132,22 @@ video,
     margin: 0 auto;
 }
 /*page*/
+body,html{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+#app,
+.page{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
 //nav
 .nav-top {
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 59px;
     background-color: $nav;
@@ -144,6 +158,7 @@ video,
         //下拉
         color: inherit !important;
     }
+    z-index:2;
 }
 .nav-logo {
     position: relative;
@@ -175,3 +190,28 @@ video,
     margin-top: 10px;
     font-size: 20px;
 }
+//side
+.side-left{
+    position: absolute;
+    top:59px;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    overflow: auto;
+    background:#eef1f6;
+    z-index: 2;
+}
+.main-right{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-top: 59px;
+    padding-left:200px;
+    .container{
+        width: 100%;
+        height: 100%;
+        background: #f6f6f6;
+    }
+}
+
+@import "~./style-media.scss"; //引入sass 依赖 webapck ~

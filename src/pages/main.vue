@@ -1,11 +1,11 @@
 <template>
 	<div class="page">
 		<!--头部-->
-		<main-nav></main-nav>
+		<main-nav class="nav-top" :user="user" :pic="pic" ></main-nav>
 		<!--菜单-->
-		<main-side></main-side>
+		<main-side class="side-left" :navs="navs"></main-side>
 		<!--内容块-->
-		<main-layout></main-layout>
+		<main-layout class="main-right"></main-layout>
 	</div>
 </template>
 
@@ -15,6 +15,22 @@
 	import MainSide from '../container/side.vue'
 
 	export default {
-		components: { MainLayout, MainNav,MainSide }
+		data() {
+				//侧边栏菜单
+				let navs = this.$store.state.navs;
+				console.log(navs)
+			
+				return {
+					user: this.$store.state.user,
+					pic: this.$store.state.userPic,
+					navs:navs
+				}
+
+			},
+			components: {
+				MainLayout,
+				MainNav,
+				MainSide
+			}
 	}
 </script>
