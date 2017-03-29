@@ -3,6 +3,8 @@ import Main from "./pages/main.vue"
 import Login from "./pages/login.vue"
 import FalsePage from "./pages/404.vue"
 
+import Pages from "./view/pages.vue"
+
 export default [
 	{
 		//地址名
@@ -15,6 +17,9 @@ export default [
 			{
 				path:"child",
 				component:Login
+			},{
+				path:"pages",
+				component:Pages
 			}
 		]
 

@@ -3,7 +3,7 @@
 		<!--头部-->
 		<main-nav class="nav-top" :user="user" :pic="pic" ></main-nav>
 		<!--菜单-->
-		<main-side class="side-left" :navs="navs"></main-side>
+		<main-side class="side-left"  :navs="navs"></main-side>
 		<!--内容块-->
 		<main-layout class="main-right"></main-layout>
 	</div>
@@ -18,8 +18,6 @@
 		data() {
 				//侧边栏菜单
 				let navs = this.$store.state.navs;
-				console.log(navs)
-			
 				return {
 					user: this.$store.state.user,
 					pic: this.$store.state.userPic,

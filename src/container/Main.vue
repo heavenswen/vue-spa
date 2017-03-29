@@ -1,12 +1,9 @@
 <template>
 	<section>
-		<div class="container">
-
-			<transition>
-				<router-view>
-				</router-view>
-			</transition>
-		</div>
+		<transition name="slide" mode="out-in" appear>
+			<router-view class="container"></router-view>
+		</transition>
+		<slot></slot>
 	</section>
 </template>
 
