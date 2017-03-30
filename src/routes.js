@@ -1,9 +1,10 @@
-
+//路由 设置
 import Main from "./pages/main.vue"
 import Login from "./pages/login.vue"
 import FalsePage from "./pages/404.vue"
 
 import Pages from "./view/pages.vue"
+import Form from "./view/form.vue"
 
 export default [
 	{
@@ -15,8 +16,8 @@ export default [
 		component: Main,
 		children:[
 			{
-				path:"child",
-				component:Login
+				path:"form",
+				component:Form
 			},{
 				path:"pages",
 				component:Pages

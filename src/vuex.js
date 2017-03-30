@@ -10,6 +10,8 @@ export default new Vuex.Store({
 	state: {
 		//data 不允许直接修改
 		mobile: (document.hasOwnProperty("ontouchstart")), //判断
+		//产品名称
+		title:"DCUI",
 		//用户名
 		user: "dc-qiu",
 		//
@@ -17,12 +19,11 @@ export default new Vuex.Store({
 		nowPath: null,
 		navs: [
 		{
-			title: "侧边导航",
+			title: "数据类",
 			icon: "el-icon-document",
 			childs: [{
-				title: "导航1",
-				icon: "el-icon-document",
-				path: '/main/child'
+				title: "表单类",
+				path: '/main/form'
 			}]
 		}, {
 			title: "选项卡",

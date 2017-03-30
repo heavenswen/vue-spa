@@ -1,5 +1,4 @@
 <template>
-	<el-row>
 		<el-menu :default-active="nowPath" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :unique-opened="openOnly" :router="router">
 			<template v-for="(val,key) of navs">
 				<el-submenu v-if="val.childs" :index="key+'-'">
@@ -18,8 +17,6 @@
 				</el-menu-item>
 			</template>
 		</el-menu>
-
-	</el-row>
 </template>
 
 <script>
@@ -35,7 +32,6 @@
 
 			//获得当前路径
 			let path = this.$store.state.nowPath; //获得props path
-			console.log(path)
 			return {
 				nowPath: path,
 				router: true, //以 index 进行路由

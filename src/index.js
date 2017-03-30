@@ -32,8 +32,12 @@ var router=new VueRouter({
 //路由时执行
 router.afterEach((to, from) => {
 	let nowPath = to.fullPath
+	let data = router.app.$store
 	//触发路由时改变路径
-	router.app.$store.commit("setNowPath", nowPath)
+	data.commit("setNowPath", nowPath)
+	//set titile
+	let webTitle = data.state.title
+	let title = to
 })
 const app =       new Vue({
 	data:{

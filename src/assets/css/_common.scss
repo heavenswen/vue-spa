@@ -4,10 +4,28 @@
 $sm: 768; //小屏幕比例
 $md: 992; //中屛
 $lg: 1200; //屏幕
+
 $font:16;
-$nav:#324157;
-$nf:#fff;
-$bc:#ccc;
+//nav
+$nbg:#324157;
+//font
+$nc:#fff;
+//input
+// border
+$iborder:#bfcbd9;
+//background
+$ibg:#fff;
+//color
+$ic:#1f2d3d;
+//border-radius
+$ibr:4px;
+//side
+//bg
+$sbg:#eef1f6;
+
+//container
+$cbg:#f8f8f8;
+
 //标签
 $hs: h1,h2,h3,h4,h5,h6; 
 //定位
@@ -15,7 +33,7 @@ $hs: h1,h2,h3,h4,h5,h6;
 @mixin pos-mid {
     position: absolute;
     top: 50%;
-    margin: auto;
+    margin: auto !important;
     @include transform(translateY(-50%));
 }
 //absolute and margin 上下左右居中
