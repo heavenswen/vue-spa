@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<transition name="slide" mode="out-in" appear>
+		<transition name="slide" mode="out-in">
 			<router-view class="container"></router-view>
 		</transition>
 		<slot></slot>

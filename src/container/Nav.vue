@@ -6,7 +6,7 @@
 		        :sm="3"
 		        class="nav-logo img-box">
 			<img src="../assets/img/logo.png"
-			     alt="logo" />
+			     alt="logo" @click='sideHide' />
 		</el-col>
 		<!--标题-->
 		<el-col :xs='3'
@@ -58,11 +58,17 @@ export default {
 	},
 	methods: {
 		handleCommand(command) {
+			//下拉选中
 			if (command == "set") {
 				this.$router.push("/set");
 			} else if (command == "out") {
 				this.$router.push("/login");
 			}
+		},
+		sideHide(){
+			//触发side 隐藏
+			let obj = this.$parent.$refs;
+			console.log(obj);
 		}
 	}
 }

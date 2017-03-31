@@ -39,14 +39,14 @@ router.afterEach((to, from) => {
 	let webTitle = data.state.title
 	let title = to
 })
-const app =       new Vue({
+const app = new Vue({
 	data:{
 		now:null
 	},
 	router,
 	store,
 	watch: {
-		"$route": function(to, from) {
+		$route(to, from) {
 			//路由变换时执行
 			//console.log(to)
 		}

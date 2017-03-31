@@ -6,25 +6,28 @@ const regs = {};
 regs.img = /(.*)\.[jpg|bmp|gif|ico|pcx|jpeg|tif|png|raw|tga]/g;
 
 
-function regObj(value){
-	this.value = value;
-	this.regs = regs;
+class regObj {
+	constructor(value) {
+		this.value = value;
+		this.regs = regs;
+	}
+
 }
 
-regObj.prototype.bool = function(str){
+regObj.prototype.bool = function (str) {
 	//全匹配正则  布尔值
-	try{
+	try {
 		//规则
 		let reg = this.regs[str];
-	}catch(e){
+	} catch (e) {
 		return `没有找到匹配的规则`
 	}
-	return this.value.match(this.value)?this.value:false;
-	
+	return this.value.match(this.value) ? this.value : false;
+
 }
 
 //
-function regFun(value){
+function regFun(value) {
 	return new regObj(value);
 };
 
