@@ -244,18 +244,22 @@ html {
     }
 }
 //页面加载
+.show-enter-active,
+.show-leave-active,
 .slide-enter-active,
 .slide-leave-active,
 .load-enter-active,
 .load-leave-active {
     transition: all .5s;
 }
+//只缩大
 .slide-enter{
     transform: scale(0);
 }
 .slide-enter-to{
     transform: scale(1);
 }
+//黑色 透明
 .load-leave-to,
 .load-enter {
     position: absolute;
@@ -266,4 +270,14 @@ html {
 .load-enter-to {
     opacity: 1;
 }
+//显示
+.show-leave-to,
+.show-enter{
+    opacity: 0;
+}
+
+.show-enter-to{
+    opacity: 1;
+}
+
 @import "~./style-media.scss"; //引入sass 依赖 webapck ~

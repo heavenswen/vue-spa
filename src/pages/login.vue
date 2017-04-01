@@ -34,8 +34,6 @@
   </section>
 </template>
 <script>
-import axios from "axios"
-
 //验证
 var rules = {
   user: [
@@ -90,13 +88,33 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           //匹配成功
-          let data = that.loginForm
-          let user = data.user
-          let pw = data.pw
-          let post = { user, pw }
-          let server = "http://127.0.0.1/abc/vue/readme.md"
-          let obj = that.$refs["loginForm"]
-          console.log(obj)
+          //请求
+          let method = "get"
+          let datas = that.loginForm
+          let user = datas.user
+          let pw = datas.pw
+          //数据
+          let data = { user, pw }
+          //链接
+          let url = "https://api.imjad.cn/cloudmusic/?type=search&s=%E5%91%A8%E6%9D%B0%E4%BC%A6"
+          //成功
+          function success(json) {
+            console.log(json);
+             that.$parent.$refs['mark'].tip({
+               title:"登录成功!",
+               icon:"el-icon-circle-check",
+               success(){
+                 //跳转
+                  that.$router.push("/main");
+               }
+             })
+          }
+          //失败
+          function error(e) {
+            console.error(`error${e}`)
+          }
+          //执行获取数据
+          that.$parent.$refs['mark'].ajax({ method, url, data, success, error });
 
         } else {
           //验证失败

@@ -33,7 +33,7 @@ export default new Vuex.Store({
 				path: '/main/pages'
 			}]
 		}
-		]
+		],
 	},
 	getters: {
 		//计算属性
@@ -44,8 +44,11 @@ export default new Vuex.Store({
 		setNowPath(state, value) {
 			//当前路径
 			return(state.nowPath = value)
+		},
+		setMark(state, value){
+			//设置数据加载 视图
+			return(state.mark = value)
 		}
-
 	},
 	actions: {
 		//异步 提交 mutations 例function(content){context.commit('function')} 触发store.dispatch('function')
