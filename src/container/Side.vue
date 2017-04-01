@@ -1,6 +1,7 @@
 <template>
-	<transition >
-		<el-menu :default-active="nowPath"
+	<transition name="slide">
+		<el-menu v-if="display"
+		         :default-active="nowPath"
 		         class="el-menu-vertical-demo"
 		         @open="handleOpen"
 		         @close="handleClose"
@@ -34,6 +35,10 @@
 <script>
 export default {
 	props: {
+		display: {
+			type: Boolean,
+			required: true,
+		},
 		navs: {
 			//菜单
 			type: Array,
@@ -41,7 +46,6 @@ export default {
 		},
 	},
 	data() {
-
 		//获得当前路径
 		let path = this.$store.state.nowPath; //获得props path
 		return {

@@ -179,13 +179,36 @@ html {
     width: 100%;
     height: 59px;
     background-color: $nbg;
-    padding: 10px;
+    padding: 12px;
     color: $nc;
     .el-dropdown {
         //下拉
         color: inherit !important;
     }
     z-index: 2;
+    .btn-side{
+        display: block;
+        float: left;
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
+        margin-top: 5px;
+        border-radius: 4px;
+        border:1px $bcolor solid;
+        span{
+           display: block;
+           width: 80%;
+           height: 3px;
+           margin: auto;
+           margin-top: 5px;
+            background: $nc;
+        
+        }
+         &.active,
+        &:active{
+            opacity:0.8; 
+        }
+    }
 }
 .nav-logo {
     position: relative;
@@ -244,19 +267,28 @@ html {
     }
 }
 //页面加载
+.slide-leave-active,
+.slide-enter-active,
 .show-enter-active,
 .show-leave-active,
-.slide-enter-active,
-.slide-leave-active,
+.scale-enter-active,
 .load-enter-active,
 .load-leave-active {
     transition: all .5s;
 }
-//只缩大
-.slide-enter{
-    transform: scale(0);
+//滑动
+.slide-enter,
+.slide-leave-to{
+    transform:translate3d(-100%,0,0)
 }
 .slide-enter-to{
+    transform:translate3d(0,0,0)
+}
+//只缩大
+.scale-enter{
+    transform: scale(0);
+}
+.scale-enter-to{
     transform: scale(1);
 }
 //黑色 透明

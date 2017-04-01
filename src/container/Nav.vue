@@ -1,12 +1,19 @@
 
 <template>
 	<el-row>
+		<!--btn-->
+		<a :class="dislay?'active btn-side':'btn-side' ">
+			<span></span>
+			<span></span>
+			<span></span>
+		</a>
 		<!--logo-->
 		<el-col :xs='3'
 		        :sm="3"
 		        class="nav-logo img-box">
 			<img src="../assets/img/logo.png"
-			     alt="logo" @click='sideHide' />
+			     alt="logo"
+			     @click='sideHide' />
 		</el-col>
 		<!--标题-->
 		<el-col :xs='3'
@@ -19,12 +26,14 @@
 			<div class="img-box">
 				<img v-if='pic'
 				     :src="pic" />
-			</div><!--set--><el-dropdown trigger="click"
+			</div>
+			<!--set-->
+			<el-dropdown trigger="click"
 			             class="user-set"
 			             @command="handleCommand">
 				<span class="el-dropdown-link">
-	    				{{ user?user:'菜单' }}<i class="el-icon-caret-bottom el-icon--right"></i>
-	  				</span>
+							    				{{ user?user:'菜单' }}<i class="el-icon-caret-bottom el-icon--right"></i>
+							  				</span>
 				<el-dropdown-menu slot="dropdown"
 				                  trigger="click">
 					<el-dropdown-item command="set">设置</el-dropdown-item>
@@ -65,7 +74,7 @@ export default {
 				this.$router.push("/login");
 			}
 		},
-		sideHide(){
+		sideHide() {
 			//触发side 隐藏
 			let obj = this.$parent.$refs;
 			console.log(obj);

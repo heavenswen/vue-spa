@@ -5,7 +5,8 @@
 		          :user="user"
 		          :pic="pic"></main-nav>
 		<!--菜单-->
-		<main-side class="side-left"
+		<main-side :display="display"
+		           class="side-left"
 		           :navs="navs"
 		           ref='side'></main-side>
 		<!--内容块-->
@@ -22,14 +23,22 @@ export default {
 	data() {
 		//侧边栏菜单
 		let navs = this.$store.state.navs;
+		//显示
+		let display = !this.$store.state.mobile
+		console.log(display)
+
 		return {
 			user: this.$store.state.user,
 			pic: this.$store.state.userPic,
 			navs: navs,
-			path: this.$store.state.nowPath//获得props path
+			path: this.$store.state.nowPath,//获得props path
+			display
+		}
+	},
+	methods: {
+		sideHIde() {
 
 		}
-
 	},
 	components: {
 		MainLayout,

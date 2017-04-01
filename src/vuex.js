@@ -5,34 +5,36 @@ Vue.use(Vuex)
 
 const debug = process.env.NODE_ENV !== 'production'
 
+var mobile = "ontouchend" in document ;
+
 export default new Vuex.Store({
 	strict: debug,
 	state: {
 		//data 不允许直接修改
-		mobile: (document.hasOwnProperty("ontouchstart")), //判断
+		mobile, //判断
 		//产品名称
-		title:"DCUI",
+		title: "DCUI",
 		//用户名
 		user: "dc-qiu",
 		//
 		userPic: "/src/assets/img/group.png",
 		nowPath: null,
 		navs: [
-		{
-			title: "数据类",
-			icon: "el-icon-document",
-			childs: [{
-				title: "表单类",
-				path: '/main/form'
-			}]
-		}, {
-			title: "选项卡",
-			childs: [{
-				title: "导航2",
+			{
+				title: "数据类",
 				icon: "el-icon-document",
-				path: '/main/pages'
-			}]
-		}
+				childs: [{
+					title: "表单类",
+					path: '/main/form'
+				}]
+			}, {
+				title: "选项卡",
+				childs: [{
+					title: "导航2",
+					icon: "el-icon-document",
+					path: '/main/pages'
+				}]
+			}
 		],
 	},
 	getters: {
@@ -43,11 +45,11 @@ export default new Vuex.Store({
 		//事件 function(state,data) 调用 store.commit([name],data)
 		setNowPath(state, value) {
 			//当前路径
-			return(state.nowPath = value)
+			return (state.nowPath = value)
 		},
-		setMark(state, value){
+		setMark(state, value) {
 			//设置数据加载 视图
-			return(state.mark = value)
+			return (state.mark = value)
 		}
 	},
 	actions: {
