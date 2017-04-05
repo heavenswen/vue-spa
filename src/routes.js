@@ -5,7 +5,7 @@ import FalsePage from "./pages/404.vue"
 
 import Pages from "./view/pages.vue"
 import Form from "./view/form.vue"
-
+import Table from "./view/table.vue"
 export default [
 	{
 		//地址名
@@ -18,6 +18,9 @@ export default [
 			{
 				path:"form",
 				component:Form
+			},{
+				path:"table",
+				component:Table
 			},{
 				path:"pages",
 				component:Pages

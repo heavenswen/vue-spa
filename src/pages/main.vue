@@ -3,14 +3,16 @@
 		<!--头部-->
 		<main-nav class="nav-top"
 		          :user="user"
-		          :pic="pic"></main-nav>
+		          :pic="pic"
+				  :display="display"
+				  ></main-nav>
 		<!--菜单-->
 		<main-side :display="display"
 		           class="side-left"
 		           :navs="navs"
 		           ref='side'></main-side>
 		<!--内容块-->
-		<main-layout class="main-right"></main-layout>
+		<main-layout :class="display?'main-right':'main-right active' "></main-layout>
 	</div>
 </template>
 
@@ -23,21 +25,23 @@ export default {
 	data() {
 		//侧边栏菜单
 		let navs = this.$store.state.navs;
-		//显示
-		let display = !this.$store.state.mobile
-		console.log(display)
+		//if it is mobile , it does not show
+		let display = (!this.$store.state.mobile)
 
 		return {
 			user: this.$store.state.user,
 			pic: this.$store.state.userPic,
 			navs: navs,
-			path: this.$store.state.nowPath,//获得props path
+			//get window‘s url path
+			path: this.$store.state.nowPath,
 			display
 		}
 	},
 	methods: {
-		sideHIde() {
-
+		sideToggle() {
+			//side show or hide
+			let display = this.display 
+			this.display = !display;
 		}
 	},
 	components: {

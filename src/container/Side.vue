@@ -14,7 +14,7 @@
 						<i v-if="val.icon"
 						   :class="val.icon"></i> {{val.title}}
 					</template>
-					<el-menu-item-group v-for="(child,index) of val.childs">
+					<el-menu-item-group v-for="(child,index) of val.childs" :key='index' >
 						<el-menu-item :index="child.path?child.path:(key+'-'+index)">
 							<i v-if="child.icon"
 							   :class="child.icon"></i> {{ child.title }}

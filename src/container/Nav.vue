@@ -2,7 +2,7 @@
 <template>
 	<el-row>
 		<!--btn-->
-		<a :class="dislay?'active btn-side':'btn-side' ">
+		<a :class="display?'active btn-side':'btn-side' " @click="sideToggle" >
 			<span></span>
 			<span></span>
 			<span></span>
@@ -13,7 +13,7 @@
 		        class="nav-logo img-box">
 			<img src="../assets/img/logo.png"
 			     alt="logo"
-			     @click='sideHide' />
+			   />
 		</el-col>
 		<!--标题-->
 		<el-col :xs='3'
@@ -49,7 +49,7 @@ import regMatch from "../assets/js/datahanding.js"
 export default {
 	props: {
 		pic: {
-			//头像
+			//头像 portrait
 			type: String,
 			validator: function (value) {
 				let bool = regMatch(value).bool();
@@ -57,10 +57,13 @@ export default {
 			}
 		},
 		user: String,
+		display:Boolean,
 
 	},
 	data() {
 		let title = this.$store.state.title
+		//不是手机端则显示 side
+		let display = this.$store.state.mobile
 		return {
 			title
 		}
@@ -74,10 +77,11 @@ export default {
 				this.$router.push("/login");
 			}
 		},
-		sideHide() {
+		sideToggle() {
 			//触发side 隐藏
-			let obj = this.$parent.$refs;
-			console.log(obj);
+			//get main's function  
+			let obj = this.$parent;
+			obj.sideToggle();
 		}
 	}
 }

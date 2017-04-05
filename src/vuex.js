@@ -26,7 +26,12 @@ export default new Vuex.Store({
 				childs: [{
 					title: "表单类",
 					path: '/main/form'
-				}]
+				},
+				{
+					title:"表格类",
+					path:"/main/table"
+				}
+				]
 			}, {
 				title: "选项卡",
 				childs: [{

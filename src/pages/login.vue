@@ -47,10 +47,10 @@ var rules = {
 }
 export default {
   data() {
-    //获得标题
+    //get user title
     let title = this.$store.state.title || null
     title = title + '登录'
-    //设置标题
+    //set window's title
     document.title = title
     return {
       title,
@@ -99,7 +99,6 @@ export default {
           let url = "https://api.imjad.cn/cloudmusic/?type=search&s=%E5%91%A8%E6%9D%B0%E4%BC%A6"
           //成功
           function success(json) {
-            console.log(json);
              that.$parent.$refs['mark'].tip({
                title:"登录成功!",
                icon:"el-icon-circle-check",

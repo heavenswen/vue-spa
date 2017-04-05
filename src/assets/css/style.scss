@@ -135,7 +135,10 @@ h1,h2,h3,h4,h5,h6{
     margin: 0 auto;
 }
 //from
-.form-item>.input{
+.el-form-item select,
+.el-form-item input{
+    //el
+    min-width:193px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -144,16 +147,15 @@ h1,h2,h3,h4,h5,h6{
     border: 1px solid $iborder;
     box-sizing: border-box;
     color: $ic;
-    display: block;
+    display: inline-block;
     font-size: inherit;
     height: 36px;
     line-height: 1;
     outline: none;
     padding: 3px 10px;
     transition: border-color .2s cubic-bezier(.645,.045,.355,1);
-    &:only-child{
-        width: 100%;
-    }
+
+   
 }
 .btn-lg{
     width: 100%;
@@ -187,6 +189,7 @@ html {
     }
     z-index: 2;
     .btn-side{
+        //side's btn 
         display: block;
         float: left;
         width: 30px;
@@ -195,18 +198,32 @@ html {
         margin-top: 5px;
         border-radius: 4px;
         border:1px $bcolor solid;
+        
         span{
            display: block;
            width: 80%;
            height: 3px;
            margin: auto;
            margin-top: 5px;
+           border-radius: 20%;
             background: $nc;
+    transition:all .3s  linear;
+            
         
         }
-         &.active,
-        &:active{
-            opacity:0.8; 
+         &:active{
+             opacity: 0.6
+         }
+         &.active{
+            span:nth-of-type(1){
+                transform:translateY(8px) rotate(45deg)
+            }
+            span:nth-of-type(2){
+                opacity: 0
+            }
+             span:nth-of-type(3){
+                transform:translateY(-8px) rotate(-45deg)
+            }
         }
     }
 }
@@ -258,6 +275,10 @@ html {
     padding-left: 210px;
     padding-right: 10px;
     padding-bottom: 10px;
+    transition: all .3s linear;
+    &.active{
+          padding-left: 10px;
+    }
     .container {
         padding: 10px;;
         width: 100%;
