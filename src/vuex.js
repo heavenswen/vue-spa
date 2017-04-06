@@ -4,9 +4,8 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const debug = process.env.NODE_ENV !== 'production'
-
-var mobile = "ontouchend" in document ;
-
+//移动端检测
+var mobile = !!navigator.userAgent.match(/AppleWebKit.*Mobile.*/);
 export default new Vuex.Store({
 	strict: debug,
 	state: {
@@ -28,8 +27,8 @@ export default new Vuex.Store({
 					path: '/main/form'
 				},
 				{
-					title:"表格类",
-					path:"/main/table"
+					title: "表格类",
+					path: "/main/table"
 				}
 				]
 			}, {

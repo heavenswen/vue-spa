@@ -10,18 +10,24 @@ ref：用于调用$refs其子集方法
              ref="ruleForm"
              class="demo-ruleForm"
              label-width="100px">
+        <el-form-item label="下拉选择框">{{ ruleForm.select }}</el-form-item>
         <el-form-item label="下拉选择框">
-            <m-select :options="[{value:'date'},{value:'datetime'},{value:'month'},{value:'week'},{value:'time'},{value:'datetime-local'}]"
+            <m-select :options="options"
                       v-model="ruleForm.select"
                       :native="mobile" />
         </el-form-item>
-        <el-form-item> {{ ruleForm.select }}</el-form-item>
+        <el-form-item label="下拉选择框">
+            <m-select :options="options"
+                      v-model="ruleForm.select"
+                      :native="!mobile" />
+        </el-form-item>
+    
+        <el-form-item label="时间选择宽"> {{ ruleForm.date }}</el-form-item>
         <el-form-item label="日期选择器">
             <m-input :type="ruleForm.select"
                      :native="mobile"
                      v-model="ruleForm.date"></m-input>
         </el-form-item>
-        <el-form-item> {{ ruleForm.date }}</el-form-item>
         <el-form-item label="日期选择器">
             <m-input :type="ruleForm.select"
                      :native="!mobile"
@@ -48,6 +54,14 @@ var rules = {
 export default {
     data() {
         return {
+            options: [
+                { value: 'text', label: "文本" },
+                { value: 'date' },
+                { value: 'datetime' },
+                { value: 'month' },
+                { value: 'week' },
+                { value: "year" },
+            ],
             mobile: this.$store.state.mobile,
             ruleForm,
             rules,

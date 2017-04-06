@@ -11,6 +11,8 @@ npm 操作
 
 <i>允许在测试服务器</i>
 <p>npm run dev
+//局域网地址 192.168.4.30
+//webpack-dev-server --inline --hot --host 192.168.4.30
 
 <i>发布版本</i>
 <p>npm run build
@@ -21,6 +23,7 @@ npm 操作
 <p>--css css资源
 <p>--img 图片资源
 <p>-pages 页面文件
+<p>-view 视图
 <p>-container 主容器
 <p>-components 组件
 <p>dist 产出入口目录

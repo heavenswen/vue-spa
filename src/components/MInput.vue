@@ -1,16 +1,17 @@
-<!-- native:调用原生-->
+<!--兼容手机日期选择-->
 <template>
     <input :type="nativeType[type]?nativeType[type]:type"
            v-if="native"
            :placeholder="placeholder"
-           :value="val"
+           :value="value"
            @input="handleInput"
            @change="handleInput" />
     <!--兼容-->
     <el-date-picker v-else
-                    v-model="val"
+                    :value="value"
                     :type="type"
-                    :placeholder="placeholder">
+                    :placeholder="placeholder"
+                    @input="handleSelect">
     </el-date-picker>
 </template>
 <script>
@@ -36,13 +37,35 @@ export default {
         let that = this;
         return {
             nativeType,
-            val: this.value
         }
     },
     methods: {
         handleInput(event) {
-            var value = event.target.value;
+            //调用父组件的input 事件
+            let that = this
+            let value = event.target.value;
             this.$emit('input', value);
+            console.log('native', that.type, value)
+        },
+        handleSelect(v) {
+            //调用父组件的input 事件
+            let reg = /w/i
+            let that = this
+            //2017-04-06T11:12
+            //el  to  h5 
+            if (v && this.type.match(/week/i)) {
+                v = v.replace(reg, '-W')
+            } else if (v && this.type.match(/month/i)) {
+                let y = v.getFullYear()
+                let m = v.getMonth() + 1
+                v = `${y}-${m < 10 ? ('0' + m) : m}`
+            } else if (v && this.type.match(/year/i)) {
+                let y = v.getFullYear()
+                v = y
+            }
+
+            console.log(v)
+            this.$emit('input', v);
         }
 
     }
