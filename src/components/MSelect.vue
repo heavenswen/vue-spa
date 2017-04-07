@@ -1,9 +1,13 @@
-<!--兼容手机pc-->
+<!--兼容手机pc select 单选-->
 <template>
     <select v-if="native"
             :placeholder="placeholder"
             :value="value"
-            @change="handleInput">
+            @change="handleInput"
+            >
+        <option value="">
+            {{placeholder}}
+        </option>
         <option v-for="item of options"
                 :key='item.id'
                 :value="item.value">{{item.label?item.label:item.value}}</option>
@@ -26,21 +30,28 @@ export default {
         //是否使用原生
         native: Boolean,
         //获得值v-model
-        value: String,
+        value: {
+            default: ""
+        },
         options: Array,
         //站位
         placeholder: {
             default: "请选择"
         },
+        name: String,
+        disabled: {
+            default: !!0
+        }
 
     },
     methods: {
-        handleInput(event) {
-            var value = event.target.value;
+        handleInput(e) {
+            var value = e.target.value;
             //调用 
             this.$emit('input', value);
         },
         handleSelect(v) {
+
             this.$emit('input', v);
         }
     }

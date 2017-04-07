@@ -30,17 +30,25 @@ export default {
         let display = 0
         let content = this.title
         let icon = this.iconClass
-        return { display, content, icon }
+        let num = 0;//用于多个请求时
+        return { display, content, icon, num }
 
     },
     methods: {
         show(title = this.title, icon = this.iconClass) {
+            this.num++;//清除一个请求数
             //显示提示
             this.display = 1
             //设置标题
             this.content = title
             //设置iconClass
             this.icon = icon
+        },
+        clean() {
+            //清除请求
+            let that = this
+            this.num--;
+            if (!that.num) this.hide()
         },
         hide() {
             //隐藏提示
@@ -55,25 +63,26 @@ export default {
 
             Axios[method](url, data).then(function (response) {
                 //成功回调
-                that.hide();//隐藏层
 
+                that.clean();//隐藏层
                 if (success) success(response)//执行回调
 
             }).catch(function (response) {
-                that.hide();//隐藏层
+
+                that.clean();//隐藏层
 
                 if (error) error(response);//执行错误
             })
 
         },
-        tip({ title = this.title, icon = iconClass, time = 1000, success  }) {
+        tip({ title = this.title, icon = iconClass, time = 1000, success }) {
             //执行一个提示效果 
             let that = this;
             if (tipTime) clearTimeout(tipTime)
             that.show(title, icon);
             tipTime = setTimeout(() => {
                 that.hide();
-                if(success)success()
+                if (success) success()
             }, time)
         }
     }

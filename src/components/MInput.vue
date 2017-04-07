@@ -1,9 +1,11 @@
 <!--兼容手机日期选择-->
 <template>
-    <input :type="nativeType[type]?nativeType[type]:type"
-           v-if="native"
+    <input :type="type"
+           v-if="native&&nativeType[type]"
            :placeholder="placeholder"
            :value="value"
+           :disabled="disabled"
+           :name="name"
            @input="handleInput"
            @change="handleInput" />
     <!--兼容-->
@@ -11,22 +13,43 @@
                     :value="value"
                     :type="type"
                     :placeholder="placeholder"
+                    :disabled="disabled"
+                    :name="name"
                     @input="handleSelect">
     </el-date-picker>
 </template>
 <script>
 //对应的原生类
 let nativeType = {
+    date: "date",
+    month: "month",
+    week: "week",
     datetime: "datetime-local",
 }
 export default {
     props: {
         //类型
-        type: String,
+        type: {
+            type: String,
+            validator(val) {
+                let t = nativeType[val]
+                if (!t) {
+                    let str = JSON.stringify(nativeType)
+                    console.warn(`Optional  type has ${str}`)
+                }
+                return val
+            }
+        },
         //是否使用原生
         native: Boolean,
         //获得值v-model
-        value: String,
+        value: {
+            default: ""
+        },
+        name: String,
+        disabled: {
+            default: !!0
+        },
         //站位
         placeholder: {
             default: "请输入"
@@ -45,7 +68,6 @@ export default {
             let that = this
             let value = event.target.value;
             this.$emit('input', value);
-            console.log('native', that.type, value)
         },
         handleSelect(v) {
             //调用父组件的input 事件
@@ -64,7 +86,6 @@ export default {
                 v = y
             }
 
-            console.log(v)
             this.$emit('input', v);
         }
 
