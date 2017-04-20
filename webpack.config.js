@@ -12,7 +12,7 @@ module.exports = {
 		//path: path.resolve(__dirname, 'dist'),
 		path: __dirname + "/" + release, //__dirname当前文件夹
 		publicPath: release, //server
-		filename: 'js/[name].js?[hash]'
+		filename: 'js/[name].js?[hash]'//entry 对应生成js
 	},
 	resolve: {
 		modules: [path.resolve(__dirname, release), "node_modules"]

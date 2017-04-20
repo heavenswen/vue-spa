@@ -3,8 +3,7 @@
     <select v-if="native"
             :placeholder="placeholder"
             :value="value"
-            @change="handleInput"
-            >
+            @change="handleInput">
         <option value="">
             {{placeholder}}
         </option>
@@ -33,7 +32,13 @@ export default {
         value: {
             default: ""
         },
-        options: Array,
+        options: {
+            required: true,
+            type: Array,
+            validator: function (value) {
+                return typeof value == 'object'
+            }
+        },
         //站位
         placeholder: {
             default: "请选择"

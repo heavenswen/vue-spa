@@ -73,6 +73,7 @@ export default {
 
                 if (error) error(response);//执行错误
             })
+            //this.$root.$children[0]. 直接从最高级访问他
 
         },
         tip({ title = this.title, icon = iconClass, time = 1000, success }) {
@@ -97,11 +98,11 @@ export default {
     top:0;
     width:100%;
     height:100%;
-    z-index:9;
+    z-index:999;
     >.block{
         width:100px;
         height:100px;
-        background-color:rgba(255,255,255,0.3);
+        background-color:rgba(255,255,255,0.9);
         border:1px solid #ccc;
         border-radius:5px;
         @include pos-auto();

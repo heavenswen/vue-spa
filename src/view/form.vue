@@ -17,9 +17,10 @@ ref：用于调用$refs其子集方法
                       :maxlength='10' />
         </el-form-item>
         <el-form-item label="密码"
-                      prop="pass">
+                      prop="pw">
             <el-input type="password"
                       v-model="formData.pw"
+                      :maxlength="16"
                       auto-complete="off"
                       placeholder="密码至少为6位"></el-input>
         </el-form-item>
@@ -27,52 +28,67 @@ ref：用于调用$refs其子集方法
                       prop="checkPass">
             <el-input type="password"
                       v-model="formData.checkPass"
-                      auto-complete="off"
+                      auto-complete="on"
                       placeholder="请再次输入密码"></el-input>
         </el-form-item>
-        <!--<el-form-item label="电话号码">
-                                                                                    <el-input v-model="formData.phone"
-                                                                                              placeholder="请输入用户名" />
-                                                                                </el-form-item>
-                                                                                <el-form-item label="电子邮箱">
-                                                                                    <el-input v-model="formData.mail"
-                                                                                              placeholder="请输入用户名" />
-                                                                                </el-form-item>
-                                                                                <el-form-item label="性别">
-                                                                                    <m-select v-model="formData.sex"
-                                                                                              :native='mobile'
-                                                                                              :options="[{value:'1',label:'男'},{value:'2',label:'女'},{value:'0',label:'保密'}]" />
-                                                                                </el-form-item>
-                                                                                <el-form-item label="生日">
-                                                                                    <m-input :native='mobile'
-                                                                                             v-model="formData.bday"
-                                                                                             placeholder='请输入您的生日'></m-input>
-                                                                                </el-form-item>
-                                                                                <el-form-item label='兴趣爱好'>
-                                                                                    <el-checkbox-group v-model="formData.Interest">
-                                                                                        <el-checkbox label="美食/餐厅线上活动"
-                                                                                                     name="type"></el-checkbox>
-                                                                                        <el-checkbox label="地推活动"
-                                                                                                     name="type"></el-checkbox>
-                                                                                        <el-checkbox label="线下主题活动"
-                                                                                                     name="type"></el-checkbox>
-                                                                                        <el-checkbox label="单纯品牌曝光"
-                                                                                                     name="type"></el-checkbox>
-                                                                                    </el-checkbox-group>
-                                                                                </el-form-item>
-                                                                                <el-form-item label="特殊资源"
-                                                                                              prop="work">
-                                                                                    <el-radio-group v-model="formData.work">
-                                                                                        <el-radio label="互联网类"></el-radio>
-                                                                                        <el-radio label="金融行业"></el-radio>
-                                                                                        <el-radio label="教育相关"></el-radio>
-                                                                                        <el-radio label="运动体育"></el-radio>
-                                                                                        
-                                                                                    </el-radio-group>
-                                                                                </el-form-item>-->
+        <el-form-item label='电子邮箱'
+                      prop='mail'>
+            <el-input type="text"
+                      v-model="formData.mail"
+                      auto-complete="on"
+                      placeholder="请输入邮箱地址" />
+        </el-form-item>
+        <el-form-item label='生日'
+                      prop='day'>
+            <m-input style='width:100%'
+                     type='date'
+                     v-model="formData.day"
+                     :native='mobile'
+                     placeholder="生日" />
+        </el-form-item>
+        <el-form-item label="兴趣爱好"
+                      prop='checkbox'>
+            <el-checkbox-group v-model='formData.checkbox'>
+                <el-checkbox v-for='item of checkboxs'
+                             :key="item.id"
+                             :label="item.value"
+                             name="type"
+                             :disabled="item.disabled"></el-checkbox>
+            </el-checkbox-group>
+        </el-form-item>
+        <el-form-item label='性别'>
+            <el-radio-group v-model='formData.sex'>
+                <el-radio v-for="item of ['男','女','保密']"
+                          :key="item.id"
+                          :label="item"
+                          name="sex"
+                          :disabled="item.disabled" />
+            </el-radio-group>
+        </el-form-item>
+        <el-form-item label='下拉选框'>
+            <m-select style='width:100%'
+                      :native='mobile'
+                      :options="[{value:'选项'},{value:'长选项1234567891011121314151617181920'},{value:'选项3'},{value:'选项4'},{value:'选项5'}]"></m-select>
+        </el-form-item>
+        <el-form-item v-for="(item, index) of formData.describe"
+                      :label="'描述'+(index?index:'')">
+            <el-input type='textarea'
+                      v-model="item.value"
+                      placeholder="请输入" />
+            <div v-if="index>=1">
+    
+                <el-button type='warning'
+                           size='mini'
+                           @click='inputDelete(item)'>删除</el-button>
+            </div>
+        </el-form-item>
+        <el-form-item>
+            <el-button @click="addDom">新增描述</el-button>
+        </el-form-item>
         <div class="text-center">
             <el-button type="primary"
                        @click="submitForm('formData')">提 交</el-button>
+            <el-button @click="resetForm('formData')">重置</el-button>
         </div>
     </el-form>
 </template>
@@ -81,20 +97,21 @@ import MSelect from "../components/MSelect.vue"
 import MInput from "../components/MInput.vue"
 export default {
     data() {
-        
+        //自定义验证规则
         let validatePass = (rule, value, callback) => {
             if (value === '') {
                 callback(new Error('请输入密码'));
             } else {
                 if (this.formData.checkPass !== '') {
                     //对比再次输入
+                    //触发单项验证
                     this.$refs.formData.validateField('checkPass');
                 }
                 callback();
             }
         };
+
         let validatePass2 = (rule, value, callback) => {
-            let that = this
             if (value === '') {
                 callback(new Error('请再次输入密码'));
             } else if (value !== this.formData.pw) {
@@ -103,37 +120,114 @@ export default {
                 callback();
             }
         };
+        //最多两项
+        let checkboxMax = (rule, value, callback) => {
+            let objstring = rule.field//对象
+            let objs = this.checkboxs//checkbox data 
+            let checkeds = this.formData[objstring]//checkeds
+            let max = 2 //checked max 
+            if (value.length >= max) {
+                objs.map(val => {
+                    for (let item of checkeds) {
+                        if (val.value == item) {
+                            val.disabled = false
+                            break
+                        } else {
+                            val.disabled = true
+                        }
+                    }
+
+                })
+                callback();
+            } else {
+                //back init
+                objs.map(val => {
+                    val.disabled = false
+                })
+                callback();
+            }
+
+        }
+
 
         //data
         var formData = {
             user: '',
             pw: '',
-            checkPass: ''
+            checkPass: '',
+            mail: '',
+            day: '',
+            checkbox: [],
+            sex: '保密',
+            select: '',
+            describe: [{value:""}]
         };
-
         //规则
         var rules = {
+            //trigger 触发规则 默认 输入 
             user: [
-                { required: true, message: '请输入用户名', trigger: 'blur' },
-                { min: 4, max: 10, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                { required: true, message: '请输入用户名' },
+                { min: 4, max: 10, message: '长度在 3 到 5 个字符' }
             ],
-            pass: [
-                { required: true, message: '请输入密码', trigger: 'blur' }, ,
-                { validator: validatePass, trigger: 'blur' }
+            pw: [
+                { required: true, message: '请输入密码' },
+                { min: 6, message: '长度最少6个字符' },
+                { validator: validatePass }//验证再次输入
             ],
             checkPass: [
-                { validator: validatePass2, trigger: 'blur' }
+                //再次输入
+                { validator: validatePass2 }
             ],
-        }
+            mail: [
+                //邮箱
+                { required: true, message: '请输入邮箱地址' },
+                { type: 'email', message: '邮箱地址错误' },//类型验证
+            ],
+            checkbox: [
+                //多选
+                { validator: checkboxMax, }
+            ]
 
+        }
+        /*
+        type:
+        string: Must be of type string. This is the default type.
+        number: Must be of type number.
+        boolean: Must be of type boolean.
+        method: Must be of type function.
+        regexp: 正则.
+        integer:整数.
+        float: Must be of type number and a floating point number.
+        array: Must be an array as determined by Array.isArray.
+        object: Must be of type object and not Array.isArray.
+        enum:  价值必须存在于枚举.
+        date: Value must be valid as determined by Date
+        url: Must be of type url.
+        hex: 十六进制.
+        email: Must be of type email.
+        
+        */
 
         return {
             mobile: this.$store.state.mobile,
             formData,
             rules,
+            //多项选择
+            checkboxs: [{ value: "户外体育", disabled: false }, { value: "室内健身", disabled: false }, { value: "户外活动", disabled: false }, { value: "饮食观光", disabled: false }, { value: "电脑游戏", disabled: false }, { value: "电脑游戏1", disabled: false }, { value: "电脑游戏2", disabled: false }]
         };
     },
     methods: {
+        addDom() {
+            //添加描述demo
+            let data = this.formData.describe.push({value:'',id:new Date()})
+        },
+        inputDelete(item) {
+            let o = this.formData.describe
+            let index = o.indexOf(item)
+            if (index !== -1) {
+                o.splice(index, 1)
+            }
+        },
         //formname is ref
         submitForm(formName) {
             let that = this
@@ -173,6 +267,7 @@ export default {
             });
         },
         resetForm(formName) {
+            //重置表单
             this.$refs[formName].resetFields();
         }
     },
@@ -180,3 +275,12 @@ export default {
 }
 
 </script>
+<style lang='sass'>
+.el-form-item .el-checkbox+.el-checkbox{
+    margin-left:0 ;
+    margin-right:15px;
+}
+.el-form-item .el-checkbox{
+    margin-right:15px;
+}
+</style>

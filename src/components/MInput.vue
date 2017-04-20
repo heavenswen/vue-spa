@@ -37,7 +37,7 @@ export default {
                     let str = JSON.stringify(nativeType)
                     console.warn(`Optional  type has ${str}`)
                 }
-                return val
+                return t
             }
         },
         //是否使用原生
@@ -85,7 +85,7 @@ export default {
                 let y = v.getFullYear()
                 v = y
             }
-
+            //返回一个值
             this.$emit('input', v);
         }
 
