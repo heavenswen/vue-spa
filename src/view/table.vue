@@ -34,6 +34,15 @@
           </template>
         </el-table-column>
       </el-table>
+      <div class='text-right'>
+        <el-pagination @size-change='sizePage'
+                       @current-change='currentChange'
+                       small
+                       layout="total,  prev, pager, next"
+                       :page-size="15"
+                       :total="100">
+        </el-pagination>
+      </div>
     </div>
     <div class='box'>
       <h3 class='text-center'>显示隐藏内容</h3>
@@ -65,6 +74,13 @@
           </template>
         </el-table-column>
       </el-table>
+      <div class='text-right'>
+        <el-pagination :current-page="2"
+                       :page-size="10"
+                       layout="total, sizes, prev, pager, next, jumper"
+                       :total="100">
+        </el-pagination>
+      </div>
     </div>
   </section>
 </template>
@@ -133,6 +149,13 @@ export default {
     }
   },
   methods: {
+    sizePage(v) {
+      console.log('sizePage', v)
+    },
+    currentChange(v) {
+      //trigger
+      console.log('currentChange', v)
+    },
     deleteRow(index, rows) {
       //删除数据行
       rows.splice(index, 1);
@@ -145,6 +168,7 @@ export default {
       return row.address;
     }
   },
+  components: {}
 }
 </script>
 <style lang="sass">
