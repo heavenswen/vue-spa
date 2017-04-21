@@ -60,8 +60,6 @@ input[type=radio] {
 }
 html {
     box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
 }
 audio,
 canvas,
@@ -75,8 +73,6 @@ video,
 *:after,
 *:before {
     box-sizing: inherit;
-    -moz-box-sizing: inherit;
-    -webkit-box-sizing: inherit;
 }
 h1,h2,h3,h4,h5,h6{
     font-weight: normal;
@@ -139,8 +135,6 @@ h1,h2,h3,h4,h5,h6{
 .el-form-item input{
     //el
     min-width:193px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
     background-color: $ibg;
     border-radius: $ibr;
@@ -221,13 +215,13 @@ html {
          }
          &.active{
             span:nth-of-type(1){
-                transform:translateY(8px) rotate(45deg)
+                transform:translateY(8px) rotate(45deg);
             }
             span:nth-of-type(2){
                 opacity: 0
             }
              span:nth-of-type(3){
-                transform:translateY(-8px) rotate(-45deg)
+                transform:translateY(-8px) rotate(-45deg);
             }
         }
     }
@@ -284,8 +278,9 @@ html {
     &.active{
           padding-left: 10px;
     }
+    //内容部分
     .container {
-        padding: 10px;;
+       padding: 10px;;
         width: 100%;
         height: 100%;
         overflow: auto;

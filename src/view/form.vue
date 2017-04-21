@@ -71,6 +71,7 @@ ref：用于调用$refs其子集方法
                       :options="[{value:'选项'},{value:'长选项1234567891011121314151617181920'},{value:'选项3'},{value:'选项4'},{value:'选项5'}]"></m-select>
         </el-form-item>
         <el-form-item v-for="(item, index) of formData.describe"
+                      :key='item.id'
                       :label="'描述'+(index?index:'')">
             <el-input type='textarea'
                       v-model="item.value"
@@ -160,7 +161,7 @@ export default {
             checkbox: [],
             sex: '保密',
             select: '',
-            describe: [{value:""}]
+            describe: [{ value: "" }]
         };
         //规则
         var rules = {
@@ -219,7 +220,7 @@ export default {
     methods: {
         addDom() {
             //添加描述demo
-            let data = this.formData.describe.push({value:'',id:new Date()})
+            let data = this.formData.describe.push({ value: '', id: new Date() })
         },
         inputDelete(item) {
             let o = this.formData.describe

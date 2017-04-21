@@ -1,6 +1,7 @@
 <template>
 	<section>
-		<transition name="scale" mode="out-in">
+		<transition name="scale"
+		            mode="out-in">
 			<router-view class="container"></router-view>
 		</transition>
 		<slot></slot>
@@ -8,9 +9,9 @@
 </template>
 
 <script>
-	export default {
+export default {
 
-	}
+}
 </script>
 
 <style lang="sass">

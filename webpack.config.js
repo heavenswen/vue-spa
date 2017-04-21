@@ -31,11 +31,11 @@ module.exports = {
 		}, {
 			//编译sass
 			test: /\.(scss|sass)$/,
-			use: ["style-loader", "css-loader", "sass-loader"]
+			use: ["style-loader", "css-loader", 'postcss-loader',"sass-loader"]
 		}, {
 			//加载css 到页面上
 			test: /\.css$/,
-			use: ["style-loader", "css-loader"]
+			use: ["style-loader", "css-loader",'postcss-loader']
 		}, {
 			//图片链接处理
 			test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
