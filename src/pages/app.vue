@@ -3,7 +3,7 @@
 		<transition name="load"
 		            mode="out-in"
 		            appear>
-			<router-view></router-view>
+			<router-view ref="con"></router-view>
 		</transition>
 		<v-mark ref="mark" />
 	</div>

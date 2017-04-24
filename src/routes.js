@@ -6,6 +6,8 @@ import FalsePage from "./pages/404.vue"
 import Pages from "./view/pages.vue"
 import Form from "./view/form.vue"
 import Table from "./view/table.vue"
+import Swiper from "./view/swiper.vue"
+import Chart from "./view/chart.vue"
 export default [
 	{
 		//地址名
@@ -22,8 +24,16 @@ export default [
 				path:"table",
 				component:Table
 			},{
+				path:"swiper",
+				component:Swiper
+			},
+			{
 				path:"pages",
 				component:Pages
+			},
+			{
+				path:"chart",
+				component:Chart
 			}
 		]
 

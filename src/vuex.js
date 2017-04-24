@@ -32,12 +32,18 @@ export default new Vuex.Store({
 				}
 				]
 			}, {
-				title: "选项卡",
+				title: "外部插件",
 				childs: [{
-					title: "导航2",
+					title: "swiper",
 					icon: "el-icon-document",
-					path: '/main/pages'
-				}]
+					path: '/main/swiper'
+				},
+				{
+					title: "chart",
+					icon: "el-icon-document",
+					path: '/main/chart'
+				}
+				]
 			}
 		],
 	},

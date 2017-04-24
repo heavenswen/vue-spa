@@ -74,13 +74,13 @@
           </template>
         </el-table-column>
       </el-table>
-      <div class='text-right'>
+      <!--<div class='text-right'>
         <el-pagination :current-page="2"
                        :page-size="10"
                        layout="total, sizes, prev, pager, next, jumper"
                        :total="100">
         </el-pagination>
-      </div>
+      </div>-->
     </div>
   </section>
 </template>

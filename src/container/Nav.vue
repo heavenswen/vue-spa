@@ -2,24 +2,43 @@
 <template>
 	<el-row>
 		<!--btn-->
-		<a :class="display?'active btn-side':'btn-side' " @click="sideToggle" >
+		<a :class="display?'active btn-side':'btn-side' "
+		   @click="sideToggle">
 			<span></span>
 			<span></span>
 			<span></span>
 		</a>
 		<!--logo-->
 		<el-col :xs='3'
-		        :sm="3"
+		        :sm="1"
 		        class="nav-logo img-box">
 			<img src="../assets/img/logo.png"
-			     alt="logo"
-			   />
+			     alt="logo" />
 		</el-col>
 		<!--标题-->
+		<el-col :xs='4'
+		        :sm="1"
+		        class="nav-title"
+		        align="bottom">{{ title }}
+		</el-col>
+		<!--消息提醒-->
 		<el-col :xs='3'
 		        :sm="3"
-		        class="nav-title"
-		        align="bottom">{{ title }}</el-col>
+		        class="nav-mail" 
+				v-if='mail' >
+			<el-popover ref="popover2"
+			            placement="bottom"
+			            width="250"
+			            :title="'您有'+mail.length+'封未读消息'"
+			            trigger="click"
+			            :popper-class='mail.length? "has":""'>
+				<div class='nav-mail-a' >
+					<a v-for='item of mail' :key='item.id' >{{ item.title }}</a>
+				</div>
+			</el-popover>
+			<el-badge :is-dot='mail.length?true:false'
+			          v-popover:popover2><i class="el-icon-message"></i></el-badge>
+		</el-col>
 		<!--user-->
 		<div class="user">
 			<!--头像-->
@@ -32,8 +51,8 @@
 			             class="user-set"
 			             @command="handleCommand">
 				<span class="el-dropdown-link">
-							    				{{ user?user:'菜单' }}<i class="el-icon-caret-bottom el-icon--right"></i>
-							  				</span>
+																					    				{{ user?user:'菜单' }}<i class="el-icon-caret-bottom el-icon--right"></i>
+																					  				</span>
 				<el-dropdown-menu slot="dropdown"
 				                  trigger="click">
 					<el-dropdown-item command="set">设置</el-dropdown-item>
@@ -57,13 +76,12 @@ export default {
 			}
 		},
 		user: String,
-		display:Boolean,
+		mail:Array,// 消息提醒 
+		display: Boolean,
 
 	},
 	data() {
 		let title = this.$store.state.title
-		//不是手机端则显示 side
-		let display = this.$store.state.mobile
 		return {
 			title
 		}
@@ -86,3 +104,13 @@ export default {
 	}
 }
 </script>
+<style lang='sass'>
+.has .el-popover__title
+{
+    color:#f00;
+}
+.nav-mail-a a{
+	display:block;
+	padding: 5px 0; 
+}
+</style>

@@ -4,8 +4,8 @@
 		<main-nav class="nav-top"
 		          :user="user"
 		          :pic="pic"
-				  :display="display"
-				  ></main-nav>
+		          :display="display"
+		          :mail="mail"></main-nav>
 		<!--菜单-->
 		<main-side :display="display"
 		           class="side-left"
@@ -20,7 +20,6 @@
 import MainLayout from '../container/Main.vue'
 import MainNav from '../container/Nav.vue'
 import MainSide from '../container/side.vue'
-
 export default {
 	data() {
 		//侧边栏菜单
@@ -32,17 +31,24 @@ export default {
 			user: this.$store.state.user,
 			pic: this.$store.state.userPic,
 			navs: navs,
-			//get window‘s url path
+			//get window‘s url path 
 			path: this.$store.state.nowPath,
-			display
+			//显示
+			display,
+			//消息提醒
+			mail: [{ title: "你好！我是***有份任务需要你审批" }, { title: "你好！我是***有份任务需要你审批" }]
 		}
 	},
 	methods: {
 		sideToggle() {
 			//side show or hide
-			let display = this.display 
+			let display = this.display
 			this.display = !display;
+		},
+		sideHide() {
+			this.display = !!0;
 		}
+
 	},
 	components: {
 		MainLayout,
