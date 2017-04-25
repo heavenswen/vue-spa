@@ -42,6 +42,11 @@ export default new Vuex.Store({
 					title: "chart",
 					icon: "el-icon-document",
 					path: '/main/chart'
+				},
+				{
+					title: "editor",
+					icon: "el-icon-document",
+					path: '/main/editor'
 				}
 				]
 			}

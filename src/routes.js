@@ -8,6 +8,7 @@ import Form from "./view/form.vue"
 import Table from "./view/table.vue"
 import Swiper from "./view/swiper.vue"
 import Chart from "./view/chart.vue"
+import Editor from "./view/editor.vue"
 export default [
 	{
 		//地址名
@@ -34,6 +35,10 @@ export default [
 			{
 				path:"chart",
 				component:Chart
+			},
+			{
+				path:"editor",
+				component:Editor
 			}
 		]
 
