@@ -24,7 +24,7 @@
         <!--右固定菜单-->
         <el-table-column fixed="right"
                          label="操作"
-                         width="120">
+                         width="80">
           <template scope="scope">
             <el-button @click.native.prevent="deleteRow(scope.$index, table)"
                        type="text"

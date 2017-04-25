@@ -7,9 +7,8 @@ ref：用于调用$refs其子集方法
 <template>
     <el-form :model="formData"
              :rules="rules"
-             ref="formData"
-             label-width="100px">
-        <el-form-item label="用户名"
+             ref="formData" label-width	='100px'>
+        <el-form-item label='用户名'
                       prop='user'>
             <el-input v-model="formData.user"
                       placeholder="请输入用户名"
@@ -277,7 +276,8 @@ export default {
 
 </script>
 <style lang='sass'>
-.el-form-item .el-checkbox+.el-checkbox{
+.el-form-item .el-checkbox+.el-checkbox,
+{
     margin-left:0 ;
     margin-right:15px;
 }
