@@ -9,6 +9,8 @@ import Table from "./view/table.vue"
 import Swiper from "./view/swiper.vue"
 import Chart from "./view/chart.vue"
 import Editor from "./view/editor.vue"
+import Editor2 from "./view/editor2.vue"
+import Amap from "./view/map.vue"
 export default [
 	{
 		//地址名
@@ -39,7 +41,15 @@ export default [
 			{
 				path:"editor",
 				component:Editor
-			}
+			},
+			{
+				path:"editor2",
+				component:Editor2
+			},
+			{
+				path:"map",
+				component:Amap
+			},
 		]
 
 	},{

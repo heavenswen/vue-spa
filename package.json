@@ -32,8 +32,10 @@
     "axios": "^0.15.3",
     "element-ui": "^1.2.5",
     "vue": "^2.2.4",
+    "vue-amap": "^0.2.4",
     "vue-awesome-swiper": "^2.4.0",
     "vue-echarts-v3": "^1.0.3",
+    "vue-html5-editor": "^1.1.1",
     "vue-router": "^2.3.0",
     "vue2-editor": "^2.0.24",
     "vuex": "^2.2.1"

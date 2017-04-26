@@ -1,7 +1,10 @@
 <template>
-    <vue-editor id="editor1"
-                v-model="editor1Content">
-    </vue-editor>
+    <div>
+        <h3 class="text-center">基于 quill 富文本</h3>
+        <vue-editor id="editor1"
+                    v-model="content">
+        </vue-editor>
+    </div>
 </template>
 
 <script>
@@ -14,7 +17,7 @@ export default {
 
     data() {
         return {
-            editor1Content: '<h1>Editor 1 Starting Content</h1>',
+            content: '<h1>Editor 1 Starting Content</h1>',
         }
     }
 }

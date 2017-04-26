@@ -44,11 +44,24 @@ export default new Vuex.Store({
 					path: '/main/chart'
 				},
 				{
-					title: "editor",
+					title: "quill-editor",
 					icon: "el-icon-document",
 					path: '/main/editor'
+				},
+				{
+					title: "h5-editor",
+					icon: "el-icon-document",
+					path: '/main/editor2'
+				},
+				{
+					title: "amap",
+					icon: "el-icon-document",
+					path: '/main/map'
 				}
 				]
+			}, {
+				title: "dom操作",
+				path: '/main/pages'
 			}
 		],
 	},

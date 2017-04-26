@@ -7,7 +7,8 @@ ref：用于调用$refs其子集方法
 <template>
     <el-form :model="formData"
              :rules="rules"
-             ref="formData" label-width	='100px'>
+             ref="formData"
+             label-width='100px'>
         <el-form-item label='用户名'
                       prop='user'>
             <el-input v-model="formData.user"
