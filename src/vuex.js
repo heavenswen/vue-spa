@@ -24,29 +24,27 @@ export default new Vuex.Store({
 				icon: "el-icon-document",
 				childs: [{
 					title: "表单类",
+					icon: 'el-icon-menu',
 					path: '/main/form'
 				},
 				{
 					title: "表格类",
+					icon: 'el-icon-menu',
 					path: "/main/table"
 				}
 				]
 			}, {
 				title: "外部插件",
+				icon:"el-icon-upload",
 				childs: [{
 					title: "swiper",
-					icon: "el-icon-document",
+					icon: "el-icon-star-off",
 					path: '/main/swiper'
 				},
 				{
 					title: "chart",
-					icon: "el-icon-document",
+					icon: "el-icon-star-off",
 					path: '/main/chart'
-				},
-				{
-					title: "quill-editor",
-					icon: "el-icon-document",
-					path: '/main/editor'
 				},
 				{
 					title: "quill",
@@ -55,7 +53,7 @@ export default new Vuex.Store({
 				},
 				{
 					title: "amap",
-					icon: "el-icon-document",
+					icon: "el-icon-star-off",
 					path: '/main/map'
 				}
 				]

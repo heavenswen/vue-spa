@@ -13,6 +13,17 @@ import App from "./pages/app.vue"
 //全局插件
 Vue.use(ElementUi)
 Vue.use(VueRouter)
+/* 只引入组件
+import { Button, Select } from 'element-ui'
+
+Vue.component(Button.name, Button)
+Vue.component(Select.name, Select)
+ or
+
+ * Vue.use(Button)
+ * Vue.use(Select)
+ */
+
 
 import VueHtml5Editor from 'vue-html5-editor'
 

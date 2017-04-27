@@ -1,17 +1,31 @@
-<template lang="html">
-  <div id="amap-cointainer">
-
-  </div>
+<template >
+    <el-amap vid="amapDemo"
+             :zoom="15">
+        <el-amap vid="amapDemo">
+        </el-amap>
+    </el-amap>
 </template>
 
 <script>
-import { lazyAMapApiLoaderInstance } from 'vue-amap';
+import Vue from "vue"
+import AMap from 'vue-amap'
+Vue.use(AMap);
+
+// 初始化vue-amap
+AMap.initAMapApiLoader({
+    // 高德的key
+    key: 'YOUR_KEY',
+    // 插件集合
+    plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor']
+});
+
 export default {
+    data() {
+        return {}
+    },
     mounted() {
-        lazyAMapApiLoaderInstance.load().then(() => {
-            this.map = new AMap.Map('amap-cointainer', { center: new AMap.LngLat(121.59996, 31.197646) });
-        });
-    }
+
+    },
 };
 </script>
 
