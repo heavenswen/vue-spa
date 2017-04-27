@@ -49,7 +49,7 @@ export default new Vuex.Store({
 					path: '/main/editor'
 				},
 				{
-					title: "h5-editor",
+					title: "quill",
 					icon: "el-icon-document",
 					path: '/main/editor2'
 				},

@@ -1,22 +1,69 @@
 <template lang="html">
-  <div id="amap-cointainer">
+    <section>
+        <div id="toolbar">
+  <button class="ql-bold">Bold</button>
+  <button class="ql-italic">Italic</button>
+  <button class="ql-image">Image</button>
+</div>
+        <div id="editor">
+        <p>{{content}}</p>
+        </div>
+        <p>
+        show:
+        {{content}}
+        </p>
+    </section>
 
-  </div>
 </template>
 
 <script>
-import { lazyAMapApiLoaderInstance } from 'vue-amap';
+import Quill from 'quill';
+import "quill/dist/quill.snow.css"
 export default {
+    data() {
+        return {
+            content: "hello quill",
+            value: ''
+        }
+    },
     mounted() {
-        lazyAMapApiLoaderInstance.load().then(() => {
-            this.map = new AMap.Map('amap-cointainer', { center: new AMap.LngLat(121.59996, 31.197646) });
-        });
+        this.$nextTick(() => {
+            let that = this
+            this.quill = new Quill('#editor', {
+                modules: { toolbar: '#toolbar' },
+                placeholder: 'Compose an epic...',
+                theme: 'snow'
+            });
+
+            this.quill.on('text-change', function (delta, oldDelta, source) {
+
+                //dom content
+                let val = document.querySelector("#editor .ql-editor").innerHTML
+                that.content = val
+
+                if (source == 'api') {
+                    //api
+                    console.log(delta);
+                } else if (source == 'user') {
+                    //用户输入
+                    let val = that.quill.getContents();//json delta数据
+                    that.value = val
+                }
+
+            });
+        })
+
+
+    },
+    methods: {
+        log() {
+            console.log(this.quill)
+        }
     }
 };
 </script>
-
-<style lang="css">
-#amap-cointainer {
-    height: 400px;
+<style lang='sass'>
+#editor{
+    height:300px;
 }
 </style>

@@ -4,6 +4,7 @@
         <vue-editor id="editor1"
                     v-model="content">
         </vue-editor>
+        {{content}}
     </div>
 </template>
 
