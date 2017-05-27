@@ -8,7 +8,7 @@
     "dev": "webpack-dev-server --inline --hot --host 192.168.4.30",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
-  "author": "qiu",
+  "author": "42322728@qq.com",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.24.0",
