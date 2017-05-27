@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 vue2+vuex+webpack2
 单页程序webpack2配置
 
@@ -30,3 +31,7 @@ npm 操作
 <p>-js 入口
 <p>-assets 外部资源
 </pre>
+=======
+# vue-spa
+vue spa配置
+>>>>>>> b78b4fb6f5bb2adddb7f44e4e24633e8a6077c96
