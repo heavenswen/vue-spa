@@ -27,6 +27,7 @@ export default {
         }
     },
     mounted() {
+        //直接初始化dom 原生调用
         this.$nextTick(() => {
             let that = this
             this.quill = new Quill('#editor', {
@@ -34,7 +35,7 @@ export default {
                 placeholder: 'Compose an epic...',
                 theme: 'snow'
             });
-
+            //quilll api
             this.quill.on('text-change', function (delta, oldDelta, source) {
 
                 //dom content

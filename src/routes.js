@@ -1,15 +1,24 @@
 //路由 设置
+//内容容器
 import Main from "./pages/main.vue"
+//登录页
 import Login from "./pages/login.vue"
+//404
 import FalsePage from "./pages/404.vue"
 
+//页面模版
 import Pages from "./view/pages.vue"
+//表单
 import Form from "./view/form.vue"
+//表格
 import Table from "./view/table.vue"
+//swiper
 import Swiper from "./view/swiper.vue"
+//图表
 import Chart from "./view/chart.vue"
-import Editor from "./view/editor.vue"
+//富文本
 import Editor2 from "./view/editor2.vue"
+//地图
 import Amap from "./view/map.vue"
 export default [
 	{
@@ -37,10 +46,6 @@ export default [
 			{
 				path:"chart",
 				component:Chart
-			},
-			{
-				path:"editor",
-				component:Editor
 			},
 			{
 				path:"editor2",

@@ -14,7 +14,7 @@ export default new Vuex.Store({
 		//产品名称
 		title: "DCUI",
 		//用户名
-		user: "dc-qiu",
+		user: "DC-Qiu",
 		//
 		userPic: "/src/assets/img/group.png",
 		nowPath: null,

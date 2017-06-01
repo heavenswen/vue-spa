@@ -12,6 +12,7 @@ npm 操作
 
 <i>允许在测试服务器</i>
 <p>npm run dev
+<p>npm run dev-ip
 //局域网地址 192.168.4.30 --host 192.168.4.30(去掉为127.0.0.1)
 //webpack-dev-server --inline --hot --host 192.168.4.30
 
