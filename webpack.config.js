@@ -1,17 +1,18 @@
 //vue SPA 生产环境
 const path = require('path')
 const webpack = require('webpack')
-	//产出地址
-const release = 'dist/'
+//产出地址
+const release = 'dist'
 
 module.exports = {
 	entry: {
 		build: './src/index.js',
 	},
 	output: {
-		//path: path.resolve(__dirname, 'dist'),
-		path: __dirname + "/" + release, //__dirname当前文件夹
-		publicPath: release, //server
+		//path.resolve获得 集体文件地址 加快打包
+		path: path.resolve(__dirname, release),
+		//path: __dirname + "/" + release, //__dirname当前文件夹
+		publicPath: release+'/', //server
 		filename: 'js/[name].js?[hash]'//entry 对应生成js
 	},
 	resolve: {
@@ -31,28 +32,46 @@ module.exports = {
 		}, {
 			//编译sass
 			test: /\.(scss|sass)$/,
-			use: ["style-loader", "css-loader", 'postcss-loader',"sass-loader"]
+			use: ["style-loader", "css-loader", 'postcss-loader', "sass-loader"]
 		}, {
 			//加载css 到页面上
 			test: /\.css$/,
-			use: ["style-loader", "css-loader",'postcss-loader']
-		}, {
-			//图片链接处理
-			test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
-			exclude: /favicon\.png$/,
+			use: ["style-loader", "css-loader", 'postcss-loader']
+		},//images  
+		{
+			test: /\.(gif|png|jpe?g|svg)$/i,
+			loaders: [
+				'url-loader?limit=8192&outputPath=assets/img/&name=[name].[ext]?[hash]',
+				{
+					loader: 'image-webpack-loader',
+					query: {
+						progressive: true,
+						optimizationLevel: 7,
+						interlaced: false,
+						pngquant: {
+							quality: '65-90',
+							speed: 4
+						}
+					}
+				}
+			]
+		},
+		{
+			//fonts链接处理
+			test: /\.(eot|ttf|woff|woff2)(\?.+)?$/,
 			use: [{
 				loader: 'url-loader',
 				//小于limit to base64
-				options:{
-					limit:10000,
+				options: {
+					limit: 8192,
 					//产出地址 
-					outputPath:"/assets/img/",
+					outputPath: "assets/fonts/",
 					//域名地址
-					publicPath:"src/assets/img/",
-					name:"[name].[ext]?[hash]"
+					//publicPath: release + "assets/fonts/",
+					name: "[name].[ext]?[hash]"
 				}
 			}]
-		}, ]
+		},]
 	},
 	devServer: {
 		port: 8010,
@@ -65,9 +84,9 @@ module.exports = {
 	devtool: '#eval-source-map'
 }
 
-if(process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
 	module.exports.devtool = '#source-map'
-		// http://vue-loader.vuejs.org/en/workflow/production.html
+	// http://vue-loader.vuejs.org/en/workflow/production.html
 	module.exports.plugins = (module.exports.plugins || []).concat([
 		new webpack.DefinePlugin({
 			'process.env': {

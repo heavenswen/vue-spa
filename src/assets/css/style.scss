@@ -168,6 +168,11 @@ html {
     width: 100%;
     overflow: hidden;
 }
+body{
+    background-image: url('../img/girl2.jpg');
+    background-size:cover;
+    background-repeat:no-repeat;  
+}
 #app,
 .page {
     position: relative;
