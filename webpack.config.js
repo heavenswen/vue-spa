@@ -107,6 +107,7 @@ if (process.env.NODE_ENV === 'production') {
 			}
 		}),
 		new webpack.optimize.OccurrenceOrderPlugin(),
-
+		// webpack 3.0
+		new webpack.optimize.ModuleConcatenationPlugin()
 	])
 }
