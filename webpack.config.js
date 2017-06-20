@@ -12,7 +12,7 @@ module.exports = {
 		//path.resolve获得 集体文件地址 加快打包
 		path: path.resolve(__dirname, release),
 		//path: __dirname + "/" + release, //__dirname当前文件夹
-		publicPath: release+'/', //server
+		publicPath: release + '/', //server
 		filename: 'js/[name].js?[hash]'//entry 对应生成js
 	},
 	resolve: {
@@ -44,13 +44,20 @@ module.exports = {
 				'url-loader?limit=8192&outputPath=assets/img/&name=[name].[ext]?[hash]',
 				{
 					loader: 'image-webpack-loader',
-					query: {
-						progressive: true,
-						optimizationLevel: 7,
-						interlaced: false,
+					options: {
+						gifsicle: {
+							interlaced: false,
+						},
+						optipng: {
+							optimizationLevel: 1,
+						},
 						pngquant: {
 							quality: '65-90',
 							speed: 4
+						},
+						mozjpeg: {
+							progressive: true,
+							quality: 65
 						}
 					}
 				}
