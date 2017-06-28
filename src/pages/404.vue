@@ -1,5 +1,5 @@
 <template>
-  <section class='page'>
+  <section class='page 404'>
     <h1>404</h1>
   </section>
 </template>
@@ -10,3 +10,8 @@ export default {
 
 }
 </script>
+<style lang="sass">
+@import '~../assets/css/_common' ;
+
+
+</style>

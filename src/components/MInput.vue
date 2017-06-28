@@ -15,8 +15,8 @@
                     :placeholder="placeholder"
                     :disabled="disabled"
                     :name="name"
-                    @input="handleSelect">
-    </el-date-picker>
+                    @input="handleSelect" />
+   
 </template>
 <script>
 //对应的原生类

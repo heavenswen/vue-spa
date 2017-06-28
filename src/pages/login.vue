@@ -153,7 +153,7 @@ export default {
     width:350px;
       left: 0;
   right:0;
-  @include pos-mid();
+  @include position-mid();
   
     }
 }

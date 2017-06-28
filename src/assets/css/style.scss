@@ -168,11 +168,7 @@ html {
     width: 100%;
     overflow: hidden;
 }
-body{
-    background-image: url('../img/girl2.jpg');
-    background-size:cover;
-    background-repeat:no-repeat;  
-}
+
 #app,
 .page {
     position: relative;
@@ -239,7 +235,7 @@ body{
     height: 35px;
     margin-right: 5px;
     img {
-        @include pos-mid();
+        @include position-mid();
     }
 }
 .user {

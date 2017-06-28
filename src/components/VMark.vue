@@ -105,7 +105,7 @@ export default {
         background-color:rgba(255,255,255,0.9);
         border:1px solid #ccc;
         border-radius:5px;
-        @include pos-auto();
+        @include position-auto();
         padding:10px;
         text-align:center;
         i{

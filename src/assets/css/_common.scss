@@ -4,6 +4,9 @@
 $sm: 768; //小屏幕比例
 $md: 992; //中屛
 $lg: 1200; //屏幕
+$mobile:true;//是否应用于手机端
+$flex:true;//使用flex布局
+
 
 $font:16;
 //nav
@@ -27,48 +30,72 @@ $sbg:#eef1f6;
 
 //container
 $cbg:#f8f8f8;
+//font style
+$f-style:'Microsoft YaHei',Arial, Helvetica, sans-serif;
+$f:16px;//font default
+$f-sm:12px; //font small
+$rem:100;
 
-//标签
+//size math rem
+@function size($p,$u:px,$r:$rem) {
+    @if $u == px{
+        //普通
+        @return $p+$u; 
+    }@else if $u == rem{
+        @return ($p/$r)+$u;
+    }
+}
+
+//color
+$blue:#39f;
+$red:#f00;
+$orange:#ff9600;
+$green:green;
+
+//标签  数组是从1开始的 引用nth($hs,1)
 $hs: h1,h2,h3,h4,h5,h6; 
+$all:body,h1,h2,h3,h4,h5,h6,label,ul,li,dl,dt,dd,p,span,strong,input,select,textarea;
+
+
+//transition time
+$transition-t:.3;
+
 //定位
-// 利用absolute 上下居中
-@mixin pos-mid {
-    position: absolute;
+// 利用absolute 上下居中 @include position-mid()
+@mixin position-mid($position:absolute){
+    position: $position;
     top: 50%;
-    margin: auto !important;
-    @include transform(translateY(-50%));
+    left:0;
+    right:0;
+    margin: auto;
+   transform: translateY(-50%);
 }
-//absolute and margin 上下左右居中
-@mixin pos-auto($t:0px, $b:0px, $l:0px, $r:0px) {
-    position: absolute;
-    top: $t;
-    bottom: $b;
-    left: $l;
-    right: $r;
+
+//使用flex 父级
+@mixin flex-auto(){
+    display:flex;
+    align-content: center;
+}
+
+//absolute and margin 上下左右居中 必须有宽高
+@mixin position-auto($position:absolute) {
+    position: $position;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     margin: auto;
 }
-@mixin pos-head(){
-    position: absolute;
-    top: 50%;
-    margin: auto;
-     
-    transform: scale(200%) translate(-50%,-50%);
+//使用flex 父级
+@mixin flex-auto(){
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
-//给对象添加固定padding-data()
-@mixin padding-data($types:(top, left, bottom, right, ), $num:10px) {
-    @each $type in $types {
-        padding-#{$type}: $num;
-    }
-}
-//边框
-@mixin margin-data($types:(top, left, bottom, right, ), $num:10px) {
-    @each $type in $types {
-        margin-#{$type}: $num;
-    }
-}
+
 //外观
-//三角形 （方向，宽，高,颜色）
-@mixin triangle($t, $w, $h, $c) {
+//三角形 （方向，宽，高,颜色）@include triangle()
+@mixin icon-sjx($t:bottom, $w:10px, $h:10px, $c:#000) {
     width: 0;
     height: 0;
     border-style: solid;
@@ -76,23 +103,120 @@ $hs: h1,h2,h3,h4,h5,h6;
     border-color: transparent;
     border-#{$t}-color: $c;
 }
-//圆角边框
-@mixin box-radius($r:50%) {
-    border-radius: $r;
-    overflow: hidden;
+
+
+
+//打×图标 div>i*3 状态 颜色
+@mixin icon-close-btn($active:active,$c:#000){
+    overflow:hidden;
+
+    &>i{
+        border-radius: 5px;
+        display:block;
+        margin: auto;
+        width: 80%;
+        height: 10%;
+        margin-top: 17.28%;
+        background-color:$c;
+        @include transition();
+    }
+    &.#{$active}{
+        &>i{
+
+            &:nth-of-type(1){
+                // width: calc( 100%*1.4142 );
+                // transform-origin:0 center ;
+                transform:translateY(272.8%) rotate(45deg) ;
+            }
+            &:nth-of-type(2){
+                transform: translate3D(100%,0,0);
+                opacity: 0;
+            }
+            &:nth-of-type(3){
+                // width: calc( 100%*1.4142 );
+                // transform-origin:0 center;
+                transform:translateY(-272.8%)  rotate(-45deg);
+            }
+
+        }
+    }
 }
+
+
+//加载图标 div>i*3  @include new-ani-scaleY() 依赖 
+@mixin icon-loading($c:#39c,$n:3,$new:1){
+            //kf end
+           display: flex;
+           $w:100%/($n+1);
+            @if $new == 1 {
+                @at-root(without:all){
+                    @keyframes scaleY {
+                        0%,100%{
+                            transform: scaleY(.3)
+                        }
+                        50%{
+                            transform: scaleY(1)
+                        }
+                    }
+                }
+            }
+
+            &>i{
+
+                width:$w;
+                height: 100%;
+                margin-right:$w/($n - 1) ;
+                background-color:$c; 
+                animation: scaleY 1s linear infinite;
+                transform-origin:center bottom; 
+                &:nth-last-of-type(1){
+                    margin-right: 0;
+                }
+                @for $i from 0 to $n{
+                    &:nth-of-type(#{$i+1}){
+                        animation-delay: -0.3*$i+s;
+                    }
+
+                }
+
+            }
+}
+
+//蒙板 (active焦点，背后颜色，进入效果，消失效果)
+//document.querySelector("").classList.toggle('active')
+@mixin mask-bg($showCl:active,$c:rgba(0,0,0,.6),$leave:scale(1),$enter:scale(1)){
+    position: fixed;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    @include transition();
+    z-index: 99;
+    opacity: 0;
+    transform: $leave;
+    background-color: $c;
+    pointer-events: none;
+    &.#{$showCl}{
+        opacity:1;
+        transform:$enter;
+        pointer-events: auto;
+    }
+}
+
 //变形
-//快速过渡
-@mixin transition($type:all, $s:0.3, $ease:linear) {
-    transition: $type $s $ease;
-    -webkit-transition: $type $s $ease;
+
+//快速过渡@include transition()
+@mixin transition($type:all, $s:$transition-t, $ease:ease) {
+    transition: $type $s+s $ease;
 }
-//扭曲兼容
-@mixin transform($type...) {
-    transform: $type;
-    -webkit-transform: $type;
-}
+
+
 //媒体
+//@content 可以用来解决css3的@media等带来的问题。它可以使@mixin接受一整块样式
+//@include max-media(480px) {
+//body { color: red }
+//}
+
 //最大尺寸（npx）
 @mixin max-media($w) {
     @media( max-width: $w ) {
@@ -105,7 +229,21 @@ $hs: h1,h2,h3,h4,h5,h6;
         @content;
     }
 }
-//@content 可以用来解决css3的@media等带来的问题。它可以使@mixin接受一整块样式
-//@include max-media(480px) {
-//body { color: red }
-//}
+//animate
+
+//循环
+//@each $child in $array{ //child... }
+//@for $i from 1 to 10{ //$i到9}
+
+//跳出嵌套 @at-root
+//@at-root (without: media)，@at-root (without: support)。这个语法的关键词有四个：all（表示所有），rule（表示常规css），media（表示media），support（表示support，因为@support目前还无法广泛使用，所以在此不表）。我们默认的@at-root其实就是@at-root (without:rule)。
+//继承 @extend h1; 继承选择器的样式
+
+//function @function pxToRem($px) {@return $px / $baseFontSize * 1rem;}
+//引用 body{font-size:pxToRem(16px);}
+
+//if @if $type == ocean {color: blue;} 
+//@else if $type == matador {color: red;}
+// @else {  color: black;}
+
+//@extend 引用已有的样式 @extend h1 
