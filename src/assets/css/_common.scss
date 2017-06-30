@@ -149,7 +149,7 @@ $transition-t:.3;
            display: flex;
            $w:100%/($n+1);
             @if $new == 1 {
-                @at-root(without:all){
+                @at-root ( without:all ) {
                     @keyframes scaleY {
                         0%,100%{
                             transform: scaleY(.3)

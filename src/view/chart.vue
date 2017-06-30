@@ -67,8 +67,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style  lang='sass' >
 .echarts {
     height: 100%;
+
 }
 </style>
