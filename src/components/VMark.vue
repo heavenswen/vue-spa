@@ -1,4 +1,4 @@
-
+// 加载等待效果
 <template>
     <transition name="show"
                 mode="out-in">

@@ -7,7 +7,7 @@
 		         @close="handleClose"
 		         :unique-opened="openOnly"
 		         :router="router">
-			<template v-for="(val,key) of navs">
+			<template v-for="(val,key) of navs" >
 				<el-submenu v-if="val.childs"
 				            :index="key+'-'">
 					<template slot="title">

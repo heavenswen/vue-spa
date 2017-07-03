@@ -56,8 +56,8 @@ export default {
             that.bar.series[0].data = data;
         },
         onReady(instance) {
+            //加载完成执行
             var that = this;
-            console.log(instance);
             setTimeout(that.doRandom, 1500)
         },
         onClick(event, instance, echarts) {
